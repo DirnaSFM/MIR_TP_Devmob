@@ -164,8 +164,8 @@ class _MyHomePageState extends State<MyHomePage> {
       direction: rowColumn,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _buildZoneAppel("ADN", hauteurMax, largeurMax),
-        _buildZoneAppel("Guess my number", hauteurMax, largeurMax),
+        _buildZoneAppel(hauteurMax, largeurMax),
+        _buildZoneAppel(hauteurMax, largeurMax),
       ],
     );
   }
@@ -218,7 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
         Flexible(
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blueGrey[100]!),
+              border: Border.all(color: Colors.green[100]!),
               borderRadius: BorderRadius.circular(8),
             ),
             width: 300,
@@ -232,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   return ListTile(
                     title: Text('${valeurs[index]['nom']}'),
                     tileColor: typeInformation['selectedIndex'] == index
-                        ? Colors.blueGrey[100]
+                        ? Color.fromARGB(255, 144, 214, 165)
                         : null,
                     onTap: () {
                       setState(() {
@@ -250,7 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-    Widget _buildZoneAppel(String texte, double hauteurMax, double largeurMax) {
+    Widget _buildZoneAppel(double hauteurMax, double largeurMax) {
     //print("hauteurMax $hauteurMax");
     final seuils = [180, 120, 90, 78];
     if (hauteurMax > seuils[3]) {
@@ -269,18 +269,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Padding(
           padding: EdgeInsets.symmetric(
               vertical: min(hauteurMax / 4, 32), horizontal: 10),
-          child: _buildInterieurConteneur(texte, hauteurMax,
+          child: _buildInterieurConteneur(hauteurMax,
               seuils, largeurMax),
         ),
       );
     } else {
-      return _buildInterieurConteneur(texte, hauteurMax, seuils,
+      return _buildInterieurConteneur(hauteurMax, seuils,
           largeurMax);
     }
   }
 
-  Column _buildInterieurConteneur(String texte,
-      double hauteurMax, List<int> seuils, double largeurMax,
+  Column _buildInterieurConteneur(double hauteurMax, List<int> seuils, double largeurMax,
       ) {
     if (largeurMax < 160) {
     }
@@ -288,10 +287,7 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         ElevatedButton(
           onPressed: () {  },
-          child: Text(
-            texte,
-            overflow: TextOverflow.ellipsis,
-          ),
+          child: Text('test'),
         ),
         if (hauteurMax > seuils[1]) const Spacer(),
       ],
